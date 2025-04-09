@@ -16,16 +16,6 @@ export default [
 
   {
     plugins: {
-      tailwindcss: require("eslint-plugin-tailwindcss"),
-    },
-    rules: {
-      "tailwindcss/classnames-order": "warn",
-      "tailwindcss/no-custom-classname": "off",
-    },
-  },
-
-  {
-    plugins: {
       "react-hooks": require("eslint-plugin-react-hooks"),
     },
     rules: {
