@@ -17,6 +17,13 @@ export function middleware(req) {
     return NextResponse.redirect(url);
   }
 
+  const country = geo?.country || "";
+  if (country === "RS") {
+    const url = nextUrl.clone();
+    url.pathname = `/sr${nextUrl.pathname}`;
+    return NextResponse.redirect(url);
+  }
+
   const acceptLangHeader = req.headers.get("accept-language");
   if (acceptLangHeader) {
     const preferredLang = acceptLangHeader.split(",")[0].split("-")[0];
@@ -27,11 +34,8 @@ export function middleware(req) {
     }
   }
 
-  const country = geo?.country || "";
-  const locale = country === "RS" ? "sr" : defaultLocale;
-
   const url = nextUrl.clone();
-  url.pathname = `/${locale}${nextUrl.pathname}`;
+  url.pathname = `/${defaultLocale}${nextUrl.pathname}`;
   return NextResponse.redirect(url);
 }
 
